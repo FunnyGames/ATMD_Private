@@ -1,0 +1,5 @@
+/node_modules
+.DS_STORE
+
+/CLEINT/node_modules
+/CLEINT/.DS_STORE
