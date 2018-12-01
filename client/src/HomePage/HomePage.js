@@ -7,9 +7,13 @@ import { userActions } from '../actions/index';
 
 class HomePage extends React.Component {
 
-
     handleDeleteUser(id) {
         return (e) => this.props.dispatch(userActions.delete(id));
+    }
+    handleLogOut(e){
+            e.preventDefault();
+            this.props.dispatch(userActions.logout());
+       
     }
 
 
@@ -26,7 +30,8 @@ class HomePage extends React.Component {
                 <h2>User firstName: {user.firstName}</h2>
                 <h2>User lastName: {user.lastName}</h2>
                 <h2>User role: {user.role}</h2>
-                <Link to="/login">Log Out</Link>
+                <button onClick={this.handleLogOut.bind(this)}>Log out</button>
+               
             </div>
         );
     }

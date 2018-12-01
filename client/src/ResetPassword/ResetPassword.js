@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../css/LoginPage.css'
 import '../fonts/font-awesome-4.7.0/css/font-awesome.min.css';
-
+import { Link } from 'react-router-dom';
 import { userActions } from '../actions';
 
 class ResetPassword extends React.Component {

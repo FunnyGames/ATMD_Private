@@ -31,6 +31,7 @@ function login(id, password) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
+    
 }
 function getAll() {
     const requestOptions = {
