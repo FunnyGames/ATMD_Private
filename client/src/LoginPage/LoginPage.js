@@ -39,7 +39,6 @@ class LoginPage extends React.Component {
     render() {
         const { loggedIn } = this.props;
         const { id, password, submitted } = this.state;
-        console.log("Logged in: " + loggedIn);
         let checkLogin = (<div>
                 { loggedIn ? <Redirect to='/' /> : null }
             </div>);
@@ -90,7 +89,6 @@ class LoginPage extends React.Component {
 
 function mapStateToProps(state) {
     const { loggedIn } = state.authentication;
-    console.log('mapState: ' + loggedIn);
     return {
         loggedIn
     };

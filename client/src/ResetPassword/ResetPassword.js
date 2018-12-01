@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../css/LoginPage.css'
 import '../fonts/font-awesome-4.7.0/css/font-awesome.min.css';
@@ -33,18 +33,23 @@ class ResetPassword extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { id, password, newPass } = this.state;
+        const { id, password, newPassword } = this.state;
         const { dispatch } = this.props;
-        if (id && password && newPass) {
-            dispatch(userActions.resetPass(id, password, newPass));
+        if (id && password && newPassword) {
+            dispatch(userActions.resetPass(id, password, newPassword));
         }
     }
 
     render() {
-        const { reset } = this.props;
-        const { id, password, submitted, newPass } = this.state;
+        const { loggedIn } = this.props;
+        const { id, password, submitted, newPassword } = this.state;
+        let checkLogin = (<div>
+            { loggedIn ? <Redirect to='/' /> : null }
+        </div>);
+
         return (
             <div class="limiter">
+            { checkLogin }
                 <div class="container-login100">
                     <div class="wrap-login100">
                         <form method="post" class="login100-form validate-form"/>
@@ -72,8 +77,8 @@ class ResetPassword extends React.Component {
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Enter A New Password">
-                        <input class="input100" type="password" name="newPass" placeholder="New Password" value={newPass} onChange={this.handleChange}/>
-                        {submitted && !newPass &&
+                        <input class="input100" type="password" name="newPassword" placeholder="New Password" value={newPassword} onChange={this.handleChange}/>
+                        {submitted && !newPassword &&
                             <div id="empty-fields" className="help-block">password is required</div>
                         }
                         <span class="focus-input100" ><i id="icon" class="fa fa-key "/></span>
@@ -94,9 +99,9 @@ class ResetPassword extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { reset } = state.authentication;
+    const { loggedIn } = state.authentication;
     return {
-        reset
+        loggedIn
     };
 }
 
