@@ -56,11 +56,17 @@ class LoginPage extends React.Component {
 
                         <div class="wrap-input100 validate-input" data-validate="Enter User ID">
                         <input class="input100" type="text" name="id" placeholder="ID" value={id} onChange={this.handleChange}/>
+                        {submitted && !id &&
+                            <div id="empty-fields" className="help-block">ID is required</div>
+                        }
                         <span class="focus-input100" ><i id="icon" class="fa fa-address-book"/></span>
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Enter Password">
                         <input class="input100" type="password" name="password" placeholder="Password" value={password} onChange={this.handleChange}/>
+                        {submitted && !password &&
+                            <div id="empty-fields" className="help-block">password is required</div>
+                        }
                         <span class="focus-input100" ><i id="icon" class="fa fa-key "/></span>
                         </div>
 
