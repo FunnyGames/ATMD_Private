@@ -75,6 +75,7 @@ class LoginPage extends React.Component {
                             Login
                             </button>
                         </div>
+                        <Link to="/reset" id="reset-btn">Reset Password</Link>
                     </div>
                 </div>
 
