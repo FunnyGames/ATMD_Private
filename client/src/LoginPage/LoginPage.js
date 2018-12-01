@@ -9,13 +9,12 @@ import { userActions } from '../actions';
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
-
-      
-
         this.state = {
             id: '',
             password: '',
-            submitted: false
+            submitted: false,
+            error: false
+
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -35,7 +34,9 @@ class LoginPage extends React.Component {
         const { dispatch } = this.props;
         if (id && password) {
             dispatch(userActions.login(id, password));
+            this.setState({error: true});
         }
+        
     }
 
     render() {
@@ -48,6 +49,7 @@ class LoginPage extends React.Component {
         return (
             <div class="limiter">
                 { checkLogin }
+
                 <div class="container-login100">
                     <div class="wrap-login100">
                         <form method="post" class="login100-form validate-form"/>
@@ -78,6 +80,9 @@ class LoginPage extends React.Component {
                             <button class="login100-form-btn" onClick={this.handleSubmit}>
                             Login
                             </button>
+                          {this.state.error ? (<h3 id="error">Invalid Password or ID</h3>) : null}
+
+
                         </div>
                         <Link to="/reset" id="reset-btn">Reset Password</Link>
                     </div>

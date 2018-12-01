@@ -17,6 +17,7 @@ class ResetPassword extends React.Component {
             id: '',
             password: '',
             newPass: '',
+            error: false,
             submitted: false
         };
 
@@ -37,6 +38,7 @@ class ResetPassword extends React.Component {
         const { dispatch } = this.props;
         if (id && password && newPassword) {
             dispatch(userActions.resetPass(id, password, newPassword));
+            this.setState({error: true});
         }
     }
 
@@ -88,6 +90,7 @@ class ResetPassword extends React.Component {
                             <button class="login100-form-btn" onClick={this.handleSubmit}>
                             Submit
                             </button>
+                            {this.error ? <h3>Invalid Input</h3> : null};
                         </div>
                         <Link to="/login" >Cancel</Link>
                     </div>
