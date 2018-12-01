@@ -5,7 +5,8 @@ const serverAddress = "http://localhost:5000";
 export const userService = {
     login,
     logout,
-    getAll
+    getAll,
+    resetPass
 
 };
 
@@ -31,7 +32,31 @@ function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
 }
+function getAll() {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
 
+    return fetch("/users", requestOptions).then(handleResponse);
+}
+
+function resetPass(id, password , newPassword) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, password, newPassword })
+    };
+    return fetch(serverAddress + "/users/reset", requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            if (user.token) {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+            return user;
+        });
+}
 
 function handleResponse(response) {
     return response.text().then(text => {
@@ -49,12 +74,4 @@ function handleResponse(response) {
 
         return data;
     });
-}
-function getAll() {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch("/users", requestOptions).then(handleResponse);
 }

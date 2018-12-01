@@ -6,7 +6,7 @@ import { LoginPage } from './LoginPage'
 import { history } from './helpers';
 import { alertActions } from './actions';
 import { HomePage } from './HomePage';
-import { ResetPassword } from './ResetPassword';
+import { ResetPassword } from './ResetPassword/ResetPassword';
 import { PrivateRoute } from './components';
 
 

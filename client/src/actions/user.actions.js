@@ -6,7 +6,8 @@ import { history } from '../helpers';
 export const userActions = {
     login,
     logout,
-    getAll
+    getAll,
+    resetPass
 
 };
 
@@ -51,7 +52,28 @@ function getAll() {
     function success(users) { return { type: userConstants.GETALL_SUCCESS, users } }
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
 }
+function resetPass(id, password) {
+    return dispatch => {
+        dispatch(request({ id }));
 
+        userService.resetPass(id, password)
+            .then(
+                user => { 
+                    dispatch(success(user));
+                    history.push('/');
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                    history.push('/login');
+                }
+            );
+    };
+
+    function request(user) { return { type: userConstants.RESET_PASSWORD_REQUEST, user } }
+    function success(user) { return { type: userConstants.RESET_PASSWORD_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.RESET_PASSWORD_FAILURE, error } }
+}
 
 
 
