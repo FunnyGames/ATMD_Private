@@ -5,7 +5,6 @@ const express = require('express');
 const router = express.Router();
 
 router.post("/login" , async(req , res) => {
-    console.log("login");
     const { error } = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -25,7 +24,6 @@ router.post("/login" , async(req , res) => {
         lastName: user.lastName,
         role: user.role
     };
-    console.log(response);
     res.send(response);
 });
 
@@ -50,7 +48,18 @@ router.post("/reset" , async(req, res) => {
     
     if (!user) return res.status(400).send("ERROR - Password Didn't Changed!");
 
-    return res.status(200).send(user);    
+    const token = user.generateAuthToken();
+
+    res.setHeader('Content-Type' , 'application/json');
+    const response = {
+        token: token,
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role
+    };
+
+    return res.status(200).send(response);    
 
 
 });
