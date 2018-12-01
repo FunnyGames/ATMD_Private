@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../css/LoginPage.css'
+import '../fonts/font-awesome-4.7.0/css/font-awesome.min.css';
 
 import { userActions } from '../actions';
 
@@ -44,48 +45,35 @@ class LoginPage extends React.Component {
         return (
             <div class="limiter">
                 <div class="container-login100">
-                 <div class="wrap-login100">
-                    <div class="login100-form-title">
-                        <span class="login100-form-title-1">
-                            Sign In
+                    <div class="wrap-login100">
+                        <form method="post" class="login100-form validate-form"/>
+                        <span class="login100-form-logo">
+                            <i class="fa fa-address-card"></i>
                         </span>
+                        <span class="login100-form-title p-b-34 p-t-27">
+                         Log in
+                        </span>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter User ID">
+                        <input class="input100" type="text" name="id" placeholder="ID" value={id} onChange={this.handleChange}/>
+                        <span class="focus-input100" ><i id="icon" class="fa fa-address-book"/></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter Password">
+                        <input class="input100" type="password" name="password" placeholder="Password" value={password} onChange={this.handleChange}/>
+                        <span class="focus-input100" ><i id="icon" class="fa fa-key "/></span>
+                        </div>
+
+                        <div class="container-login100-form-btn">
+                            <button class="login100-form-btn" onClick={this.handleSubmit}>
+                            Login
+                            </button>
+                        </div>
                     </div>
-                    <form class="login100-form validate form">
-                        <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                            <span class="label-input100">ID</span>
-                            <input class="input100" type="text" name="id" placeholder="Enter ID" value={id} onChange={this.handleChange}></input>
-                            <span class="focus-input100"></span>
-                        </div>
-
-                        <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                            <span class="label-input100">Password</span>
-                            <input class="input100" type="password" name="pass" placeholder="Enter Password" value={password} onChange={this.handleChange}></input>
-                            <span class="focus-input100"></span>
-                        </div>
-
-                        <div class="flex-sb-m w-full p-b-30"> 
-                            <div class="contact100-form-checkbox">
-                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"></input>
-                                <label class="label-checkbox100" for="ckb1">
-								Remember me
-							    </label>
-                            </div>
-
-                            <div>
-                            <Link to="/reset" class="txt1">Reset Password</Link>
-                            </div>
-                            
-                            <div class="container-login100-form-btn">
-                                <button class="login100-form-btn" onSubmit={this.handleSubmit}>
-                                    Login
-                                </button>
-
-                            </div>
-                        </div>
-                    </form>
-                 </div>
                 </div>
+
             </div>
+
         );
     }
 }
