@@ -28,21 +28,14 @@ router.post("/login" , async(req , res) => {
 });
 
 router.post("/reset" , async(req, res) => {
-    console.log('reset');
-    console.log(req.body);
     const { error } = ValidateResetPassword(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    console.log('after body validation');
-
     let user = await User.findOne({ id: req.body.id});
     if(!user) return res.status(400).send("Invalid ID or Password");
-    console.log('user found: ' + user);
 
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if(!validPassword) return res.status(400).send("Invalid ID or Password");
-    
-    console.log('after password validation');
 
     const salt = await bcrypt.genSalt(10);
     const newPassword = await bcrypt.hash(req.body.newPassword, salt);
@@ -52,8 +45,6 @@ router.post("/reset" , async(req, res) => {
     }, {
         new: true
     });
-    
-    console.log('updated new user');
 
     if (!user) return res.status(400).send("ERROR - Password Didn't Changed!");
 
@@ -67,7 +58,6 @@ router.post("/reset" , async(req, res) => {
         lastName: user.lastName,
         role: user.role
     };
-    console.log(response);
 
     return res.status(200).send(response);    
 

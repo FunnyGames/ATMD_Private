@@ -14,6 +14,9 @@ class HomePage extends React.Component {
 
     render() {
         const { user, users } = this.props;
+        if (!user) {
+            window.location.reload();
+        }
         return (
             <div>
                 <h1>Home Page</h1>
