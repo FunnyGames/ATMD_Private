@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../css/LoginPage.css'
 import '../fonts/font-awesome-4.7.0/css/font-awesome.min.css';
@@ -9,9 +9,6 @@ import { userActions } from '../actions';
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
-
-        // reset login status
-        this.props.dispatch(userActions.logout());
 
         this.state = {
             id: '',
@@ -40,10 +37,16 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const { loggingIn } = this.props;
+        const { loggedIn } = this.props;
         const { id, password, submitted } = this.state;
+        console.log("Logged in: " + loggedIn);
+        let checkLogin = (<div>
+                { loggedIn ? <Redirect to='/' /> : null }
+            </div>);
+        
         return (
             <div class="limiter">
+                { checkLogin }
                 <div class="container-login100">
                     <div class="wrap-login100">
                         <form method="post" class="login100-form validate-form"/>
@@ -86,9 +89,10 @@ class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { loggingIn } = state.authentication;
+    const { loggedIn } = state.authentication;
+    console.log('mapState: ' + loggedIn);
     return {
-        loggingIn
+        loggedIn
     };
 }
 
