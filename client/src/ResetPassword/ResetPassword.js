@@ -84,6 +84,7 @@ class ResetPassword extends React.Component {
                             Submit
                             </button>
                         </div>
+                        <Link to="/login" >Cancel</Link>
                     </div>
                 </div>
 

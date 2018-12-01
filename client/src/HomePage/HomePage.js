@@ -12,6 +12,7 @@ class HomePage extends React.Component {
         return (e) => this.props.dispatch(userActions.delete(id));
     }
 
+
     render() {
         const { user, users } = this.props;
         return (
@@ -22,6 +23,7 @@ class HomePage extends React.Component {
                 <h2>User firstName: {user.firstName}</h2>
                 <h2>User lastName: {user.lastName}</h2>
                 <h2>User role: {user.role}</h2>
+                <Link to="/login">Log Out</Link>
             </div>
         );
     }

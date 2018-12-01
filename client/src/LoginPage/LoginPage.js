@@ -10,6 +10,8 @@ class LoginPage extends React.Component {
     constructor(props) {
         super(props);
 
+        this.props.dispatch(userActions.logout());
+
         this.state = {
             id: '',
             password: '',
