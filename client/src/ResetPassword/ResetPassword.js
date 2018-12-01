@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 import { userActions } from '../actions';
 
 class ResetPassword extends React.Component {
+    
     constructor(props) {
         super(props);
-
+        alert("reset");
         // reset login status
         this.props.dispatch(userActions.logout());
 
@@ -41,14 +42,15 @@ class ResetPassword extends React.Component {
             this.setState({error: true});
         }
     }
-
+  
     render() {
+        alert("render");
         const { loggedIn } = this.props;
         const { id, password, submitted, newPassword } = this.state;
         let checkLogin = (<div>
             { loggedIn ? <Redirect to='/' /> : null }
         </div>);
-
+        alert("before return");
         return (
             <div class="limiter">
             { checkLogin }
