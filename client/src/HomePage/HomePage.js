@@ -17,6 +17,11 @@ class HomePage extends React.Component {
         return (
             <div>
                 <h1>Home Page</h1>
+                <h2>User token: {user.token}</h2>
+                <h2>User id: {user.id}</h2>
+                <h2>User firstName: {user.firstName}</h2>
+                <h2>User lastName: {user.lastName}</h2>
+                <h2>User role: {user.role}</h2>
             </div>
         );
     }
