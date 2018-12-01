@@ -1,4 +1,4 @@
-
+const serverAddress = "http://localhost:5000";
 
 export const userService = {
     login,
@@ -12,7 +12,7 @@ function login(id, password) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id, password })
     };
-    return fetch("/users/login", requestOptions)
+    return fetch(serverAddress + "/users/login", requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
