@@ -52,11 +52,11 @@ function getAll() {
     function success(users) { return { type: userConstants.GETALL_SUCCESS, users } }
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
 }
-function resetPass(id, password) {
+function resetPass(id, password, newPassword) {
     return dispatch => {
         dispatch(request({ id }));
 
-        userService.resetPass(id, password)
+        userService.resetPass(id, password, newPassword)
             .then(
                 user => { 
                     dispatch(success(user));

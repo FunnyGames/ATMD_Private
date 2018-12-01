@@ -38,7 +38,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch("/users", requestOptions).then(handleResponse);
+    return fetch(serverAddress + "/users", requestOptions).then(handleResponse);
 }
 
 function resetPass(id, password , newPassword) {

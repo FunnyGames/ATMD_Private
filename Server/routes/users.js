@@ -36,7 +36,7 @@ router.post("/reset" , async(req, res) => {
 
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if(!validPassword) return res.status(400).send("Invalid ID or Password");
-    
+
     const salt = await bcrypt.genSalt(10);
     const newPassword = await bcrypt.hash(req.body.newPassword, salt);
 
@@ -45,7 +45,7 @@ router.post("/reset" , async(req, res) => {
     }, {
         new: true
     });
-    
+
     if (!user) return res.status(400).send("ERROR - Password Didn't Changed!");
 
     const token = user.generateAuthToken();
