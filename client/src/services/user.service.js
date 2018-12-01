@@ -1,8 +1,11 @@
+import { authHeader } from '../helpers';
+
 const serverAddress = "http://localhost:5000";
 
 export const userService = {
     login,
     logout,
+    getAll
 
 };
 
@@ -47,4 +50,12 @@ function handleResponse(response) {
 
         return data;
     });
+}
+function getAll() {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch("/users", requestOptions).then(handleResponse);
 }
