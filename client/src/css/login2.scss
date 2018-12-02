@@ -9,7 +9,7 @@ input:required {
         transparent 50%
       ),
       url('https://images.pexels.com/photos/270435/pexels-photo-270435.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
-    background-size: 100%;
+    background-size: 120%;
     height: 50rem;
     max-width: 900px;
     margin: 14rem auto;
@@ -40,7 +40,7 @@ input:required {
       width: 100%;
       display: block;
       &::-input-placeholder {
-        color: #999;
+        color: rgb(59, 59, 59);
       }
       &:focus {
         outline: none;
@@ -126,4 +126,9 @@ input:required {
     font: inherit;
     font-size: 1.3rem;
     text-decoration: none;
+  }
+
+  #reset{
+    margin-top: 20px;
+    margin-left: 23px;
   }

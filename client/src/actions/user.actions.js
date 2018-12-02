@@ -68,7 +68,6 @@ function resetPass(id, password, newPassword) {
                 error => {
                     dispatch(failure(error.toString()));
                     dispatch(alertActions.error(error.toString()));
-                    history.push('/login');
                 }
             );
     };
